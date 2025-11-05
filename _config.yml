@@ -2,15 +2,15 @@
 # https://github.com/UCSB-AMPLab/telar
 
 # Site Settings
-title: Telar
-description: "Telar (Spanish for 'loom') is a static site generator built on Jekyll that weaves together IIIF images, text, and layered contextual information into interactive digital narrative exhibitions. Telar is developed by Adelaida Ávila, Juan Cobo Betancourt, Santiago Muñoz, and students and scholars at the UCSB and UT Archives, Memory, and Preservation Labs."
-baseurl: "/telar"
-url: "https://ampl.clair.ucsb.edu"
+title: Paisajes Coloniales
+description: "Redibujando los territorios andinos en el siglo XVII"
+baseurl: "/paisajes"
+url: "https://github.com/paisajescoloniales/"
 author: ""
 email: ""
 telar_theme: "paisajes" # Options: paisajes, neogranadina, santa-barbara, austin, or custom
 logo: "" # Path to logo image (optional)
-telar_language: "en" # Options: "en" (English), "es" (Español)
+telar_language: "es" # Options: "en" (English), "es" (Español)
 
 # Google Sheets Integration (optional)
 # Manage content via Google Sheets instead of editing CSV files directly.
@@ -29,8 +29,8 @@ telar_language: "en" # Options: "en" (English), "es" (Español)
 #    - If running locally: Run `python3 scripts/fetch_google_sheets.py` before building
 google_sheets:
   enabled: true
-  shared_url: "https://docs.google.com/spreadsheets/d/18dJWy9wkLD7Muokigg4wp85c3Vsjuphdrn0g51pwkGY/edit"
-  published_url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT9eeRoyQCr1j-1uDaWBm-rgZNXtn9A-mepL0I4dqDTx2-E_6gbVD-8x0DYDVhppiAzrFpd20_9cr3z/pubhtml"
+  shared_url: "https://docs.google.com/spreadsheets/d/1tN8NM5eLN3OdUvaATVfpdvPXFxbnh3nqxkyfFpMpvJ0/edit"
+  published_url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQF8VVJ8U_i8y5qjs3VSaxo0PgYBbXpfBlxS5OsjqTYUVhAPb6ET_9A3XTpwq-hQ8-fMeps0Odr7aol/pubhtml"
 
 #
 #
