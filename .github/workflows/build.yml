@@ -1,0 +1,87 @@
+name: Build and Deploy Telar Site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Fetch data from Google Sheets (if enabled)
+        run: |
+          # Check if Google Sheets integration is enabled in _config.yml
+          ENABLED=$(python3 -c "import yaml; config=yaml.safe_load(open('_config.yml')); print(config.get('google_sheets', {}).get('enabled', False))")
+
+          if [ "$ENABLED" = "True" ]; then
+            echo "✓ Google Sheets integration enabled - fetching CSVs..."
+            python3 scripts/fetch_google_sheets.py
+          else
+            echo "✓ Google Sheets integration disabled - using existing CSV files"
+          fi
+
+      - name: Convert CSV to JSON
+        run: |
+          python scripts/csv_to_json.py
+
+      - name: Generate Jekyll collections
+        run: |
+          python scripts/generate_collections.py
+
+      - name: Build Jekyll site
+        run: |
+          bundle exec jekyll build
+
+      - name: Generate IIIF tiles into _site
+        run: |
+          # Check if source images directory exists
+          if [ -d "components/images/objects" ]; then
+            # Extract URL and baseurl from _config.yml
+            SITE_URL=$(python3 -c "import yaml; config=yaml.safe_load(open('_config.yml')); print(config.get('url', ''))")
+            BASE_URL=$(python3 -c "import yaml; config=yaml.safe_load(open('_config.yml')); print(config.get('baseurl', ''))")
+            FULL_URL="${SITE_URL}${BASE_URL}"
+
+            echo "Generating IIIF tiles with base URL: $FULL_URL"
+
+            python scripts/generate_iiif.py \
+              --source-dir components/images/objects \
+              --output-dir _site/iiif/objects \
+              --base-url "$FULL_URL"
+          else
+            echo "No components/images/objects directory found. Skipping IIIF generation."
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

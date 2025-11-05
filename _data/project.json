@@ -1,0 +1,16 @@
+[
+  {
+    "stories": [
+      {
+        "number": "1",
+        "title": "Example Telar Story",
+        "subtitle": "An introduction to digital storytelling"
+      },
+      {
+        "number": "2",
+        "title": "Telar features",
+        "subtitle": "See some of the things Telar can do"
+      }
+    ]
+  }
+]
