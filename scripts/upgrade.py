@@ -5,6 +5,8 @@ Telar Upgrade Script
 Automatically migrates Telar installations from older versions to the latest version.
 Detects current version, applies necessary migrations, and generates checklist for manual steps.
 
+Version: v0.5.0-beta
+
 Usage:
     python scripts/upgrade.py              # Normal upgrade
     python scripts/upgrade.py --dry-run    # Preview changes without applying
@@ -25,10 +27,15 @@ from migrations.v030_to_v031 import Migration030to031
 from migrations.v031_to_v032 import Migration031to032
 from migrations.v032_to_v033 import Migration032to033
 from migrations.v033_to_v034 import Migration033to034
+from migrations.v034_to_v040 import Migration034to040
+from migrations.v040_to_v041 import Migration040to041
+from migrations.v041_to_v042 import Migration041to042
+from migrations.v042_to_v043 import Migration042to043
+from migrations.v043_to_v050 import Migration043to050
 
 
 # Latest version
-LATEST_VERSION = "0.3.4-beta"
+LATEST_VERSION = "0.5.0-beta"
 
 # All available migrations in order
 MIGRATIONS = [
@@ -37,6 +44,11 @@ MIGRATIONS = [
     Migration031to032,
     Migration032to033,
     Migration033to034,
+    Migration034to040,
+    Migration040to041,
+    Migration041to042,
+    Migration042to043,
+    Migration043to050,
 ]
 
 
@@ -227,9 +239,13 @@ Please complete these after merging:
 
 """
         for i, step in enumerate(manual_steps, 1):
-            checklist += f"{i}. {step['description']}"
-            if 'doc_url' in step:
-                checklist += f" ([guide]({step['doc_url']}))"
+            # Handle both string and dict formats for backward compatibility
+            if isinstance(step, dict):
+                checklist += f"{i}. {step['description']}"
+                if 'doc_url' in step:
+                    checklist += f" ([guide]({step['doc_url']}))"
+            else:
+                checklist += f"{i}. {step}"
             checklist += "\n"
     else:
         checklist += "## No Manual Steps Required\n\nAll changes have been automated!\n"

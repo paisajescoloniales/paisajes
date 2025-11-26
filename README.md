@@ -1,8 +1,8 @@
 # Telar
 
-![Version](https://img.shields.io/badge/version-0.3.4--beta-orange) ![License](https://img.shields.io/badge/license-MIT-blue) [![Trigger Build](https://img.shields.io/badge/▶_Trigger-Build-blue)](https://github.com/UCSB-AMPLab/telar/actions/workflows/build.yml)
+![Version](https://img.shields.io/badge/version-0.5.0--beta-orange) ![License](https://img.shields.io/badge/license-MIT-blue)
 
-A minimal computing framework for creating visual narrative exhibitions with IIIF images and scrollytelling.
+A minimal-computing framework for creating layered IIIF visual narratives for digital scholarship, public exhibitions, community storytelling, and classroom projects.
 
 ---
 
@@ -10,10 +10,10 @@ A minimal computing framework for creating visual narrative exhibitions with III
 
 ---
 
-> **⚠️ Beta Release - v0.3.4-beta**
+> **⚠️ Beta Release - v0.5.0-beta**
 > This is a beta release for testing and feedback. For detailed documentation, visit **[ampl.clair.ucsb.edu/telar-docs](https://ampl.clair.ucsb.edu/telar-docs)**.
 
-> **Warning:** Version 0.3.0 introduced breaking changes. If upgrading from v0.2.0, see the [Upgrading Telar Guide](https://ampl.clair.ucsb.edu/telar-docs/docs/2-workflows/3-upgrading/) for instructions.
+> **Warning:** If upgrading from v0.3.4 or earlier, see the [Upgrading Telar Guide](https://ampl.clair.ucsb.edu/telar-docs/docs/2-workflows/3-upgrading/) for instructions.
 
 ## Overview
 
@@ -21,11 +21,15 @@ Telar (Spanish for "loom") is a static site generator built on Jekyll that weave
 
 Telar is developed by Adelaida Ávila, Juan Cobo Betancourt, Santiago Muñoz, and students and scholars at the [UCSB Archives, Memory, and Preservation Lab](https://ampl.clair.ucsb.edu), the UT Archives, Mapping, and Preservation Lab, and [Neogranadina](https://neogranadina.org).
 
+We gratefully acknowledge the support of the [Caribbean Digital Scholarship Collective](https://cdscollective.org), the [Center for Innovative Teaching, Research, and Learning (CITRAL)](https://citral.ucsb.edu/home) at the University of California, Santa Barbara, the [UCSB Library](https://library.ucsb.edu), the [Routes of Enslavement in the Americas University of California MRPI](https://www.humanities.uci.edu/routes-enslavement-americas), and the [Department of History of The University of Texas at Austin](https://liberalarts.utexas.edu/history/).
+
 ## Key Features
 
-- **IIIF integration**: Support for both local images (auto-generated tiles) and external IIIF resources
+- **IIIF integration**: Support for both local images (auto-generated tiles) and external IIIF resources with automatic metadata extraction
 - **Scrollytelling**: Discrete step-based scrolling with support for multiple IIIF objects in a single story - each object preloaded in its own viewer card
-- **Layered panels**: Progressive disclosure with three content layers plus glossary
+- **Interactive widgets**: Carousel, tabs, and accordion components for rich content presentation
+- **Layered panels**: Progressive disclosure with three content layers plus glossary auto-linking
+- **Multilingual UI**: Complete interface support for English and Spanish
 - **Objects gallery**: Browsable object grid with detail pages
 - **Minimal computing**: Plain text, static generation, GitHub Pages hosting
 
@@ -52,7 +56,7 @@ Plan your narrative structure before building. Sketch out your stories, identify
    - **CSV files**: Edit CSV files directly in your repository
 
 3. **Add your content**
-   - Upload images to `components/images/objects/` or use IIIF manifests from institutions
+   - Upload images to `components/images/` or use IIIF manifests from institutions
    - Create markdown files in `components/texts/stories/` for your narrative text
    - Configure your objects and stories in Google Sheets or CSV files
 
@@ -123,7 +127,7 @@ For detailed local development instructions, see the [Local Development Guide](h
 
 Telar uses a components-based architecture:
 - `components/structures/` - CSV files (or Google Sheets) with site and story data
-- `components/images/objects/` - Source images for IIIF processing
+- `components/images/` - Source images for IIIF processing
 - `components/texts/stories/` - Markdown files for narrative content
 - `components/texts/glossary/` - Glossary term definitions
 
@@ -131,7 +135,7 @@ For detailed information about organizing your content, see the [Content Structu
 
 ## IIIF Integration
 
-Telar supports both local images (auto-generated IIIF tiles) and external IIIF resources from museums and libraries. Upload images to `components/images/objects/` or reference external IIIF manifests in your object metadata.
+Telar supports both local images (auto-generated IIIF tiles) and external IIIF resources from museums and libraries. Upload images to `components/images/` or reference external IIIF manifests in your object metadata.
 
 For complete details on working with IIIF images, see the [IIIF Integration Guide](https://ampl.clair.ucsb.edu/telar-docs/docs/4-iiif-integration).
 
@@ -201,26 +205,3 @@ It is based on [Paisajes Coloniales](https://paisajescoloniales.com/), and inspi
 - **Documentation:** [ampl.clair.ucsb.edu/telar-docs](https://ampl.clair.ucsb.edu/telar-docs)
 - **Report Issues:** [GitHub Issues](https://github.com/UCSB-AMPLab/telar/issues)
 - **Example Site:** [ampl.clair.ucsb.edu/telar](https://ampl.clair.ucsb.edu/telar)
-
-## Roadmap
-
-### Recently Completed (v0.3.0-beta)
-
-- [x] **Google Sheets integration**: Edit content via spreadsheet interface with automatic CSV fetching
-- [x] **Comprehensive error messaging**: User-friendly warnings for configuration issues
-- [x] **IIIF manifest copy functionality**: One-click copying of manifest URLs and coordinates
-- [x] **Theme system**: 4 preset themes (Paisajes, Neogranadina, Santa Barbara, Austin) with customizable colors and fonts, plus support for custom themes
-- [x] **Theme fallback protection**: Multi-tier error detection and automatic fallback to prevent broken styling
-
-### Future Features
-
-- [ ] **Improved documentation**: Video tutorials and examples
-- [ ] **Visual story editor**: Point-and-click coordinate selection with live preview
-- [ ] **Annotation support**: Clickable markers on IIIF images that open panels with additional information (IIIF annotations)
-- [ ] **Glossary auto-linking**: Automatic detection and linking of terms within narrative text
-- [ ] **Mobile-optimized responsive design**: Improved mobile and tablet experience
-- [ ] **Accessibility improvements**: Comprehensive ARIA labels, keyboard navigation, and color contrast verification
-- [ ] **Image lazy loading**: Improved performance for object galleries
-- [ ] **Multi-language support**: Internationalization and localization
-- [ ] **3D object support**: Integration with 3D viewers
-- [ ] **Timeline visualizations**: Temporal navigation for chronological narratives

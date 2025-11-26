@@ -1,46 +1,19 @@
-# Telar - Digital Storytelling Framework
-# https://github.com/UCSB-AMPLab/telar
-
-# Site Settings
 title: Paisajes Coloniales
-description: "Redibujando los territorios andinos en el siglo XVII"
-baseurl: "/paisajes"
-url: "https://paisajescoloniales.github.io"
-author: ""
-email: ""
-telar_theme: "paisajes" # Options: paisajes, neogranadina, santa-barbara, austin, or custom
-logo: "" # Path to logo image (optional)
-telar_language: "es" # Options: "en" (English), "es" (Español)
-
-# Google Sheets Integration (optional)
-# Manage content via Google Sheets instead of editing CSV files directly.
-# See docs/google_sheets_integration/README.md for detailed setup instructions.
-#
-# Setup:
-# 1. Get the template:
-#    - Option A: Duplicate our template at https://bit.ly/telar-template
-#    - Option B: Import docs/google_sheets_integration/telar-template.xlsx to Google Sheets yourself
-# 2. Share your sheet: Anyone with the link (Viewer access)
-# 3. Publish your sheet: File > Share > Publish to web
-# 4. Paste both URLs below
-# 5. Set enabled: true
-# 6. Commit changes
-#    - If using GitHub Pages: GitHub Actions will automatically discover tab GIDs and fetch CSVs
-#    - If running locally: Run `python3 scripts/fetch_google_sheets.py` before building
+description: Redibujando los territorios andinos en el siglo XVII
+baseurl: /paisajes
+url: https://paisajescoloniales.github.io
+author: ''
+email: ''
+telar_theme: paisajes
+logo: ''
+telar_language: es
+story_interface:
+  show_story_steps: true
+  include_demo_content: false
 google_sheets:
   enabled: true
-  shared_url: "https://docs.google.com/spreadsheets/d/1tN8NM5eLN3OdUvaATVfpdvPXFxbnh3nqxkyfFpMpvJ0/edit"
-  published_url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQF8VVJ8U_i8y5qjs3VSaxo0PgYBbXpfBlxS5OsjqTYUVhAPb6ET_9A3XTpwq-hQ8-fMeps0Odr7aol/pubhtml"
-
-#
-#
-#
-# PLEASE DO NOT EDIT BELOW THIS LINE UNLESS YOU KNOW WHAT YOU ARE DOING
-#
-#
-#
-
-# Collections
+  shared_url: https://docs.google.com/spreadsheets/d/1tN8NM5eLN3OdUvaATVfpdvPXFxbnh3nqxkyfFpMpvJ0/edit
+  published_url: https://docs.google.com/spreadsheets/d/e/2PACX-1vQF8VVJ8U_i8y5qjs3VSaxo0PgYBbXpfBlxS5OsjqTYUVhAPb6ET_9A3XTpwq-hQ8-fMeps0Odr7aol/pubhtml
 collections:
   stories:
     output: true
@@ -51,57 +24,45 @@ collections:
   glossary:
     output: true
     permalink: /glossary/:name/
-
-# Collections Directory (a folder where Jekyll and the Telar scripts will put all auto-generated object and story working files)
 collections_dir: _jekyll-files
-
-# Build Settings
 markdown: kramdown
 permalink: pretty
 exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor
-  - .github
-  - README.md
-  - docs/
-  - scripts/
-
-# Defaults
+- Gemfile
+- Gemfile.lock
+- node_modules
+- vendor
+- .github
+- README.md
+- docs/
+- scripts/
 defaults:
-  - scope:
-      path: ""
-      type: "stories"
-    values:
-      layout: "story"
-  - scope:
-      path: ""
-      type: "objects"
-    values:
-      layout: "object"
-  - scope:
-      path: ""
-      type: "glossary"
-    values:
-      layout: "glossary"
-
-# Tell Jekyll not to expect dates for these collections
+- scope:
+    path: ''
+    type: stories
+  values:
+    layout: story
+- scope:
+    path: ''
+    type: objects
+  values:
+    layout: object
+- scope:
+    path: ''
+    type: glossary
+  values:
+    layout: glossary
 future: true
 show_drafts: false
-
-# Telar Settings (version information)
 telar:
-  version: "0.3.4-beta"
-  release_date: "2025-10-29"
-
-# Plugins
+  version: 0.5.0-beta
+  release_date: $(date +%Y-%m-%d)
 plugins:
-  - jekyll-seo-tag
-
-# WEBrick server configuration for development (enables CORS for IIIF)
+- jekyll-seo-tag
 webrick:
   headers:
-    Access-Control-Allow-Origin: "*"
-    Access-Control-Allow-Methods: "GET, POST, OPTIONS"
-    Access-Control-Allow-Headers: "Content-Type"
+    Access-Control-Allow-Origin: '*'
+    Access-Control-Allow-Methods: GET, POST, OPTIONS
+    Access-Control-Allow-Headers: Content-Type
+testing-features:
+  christmas_tree_mode: false
